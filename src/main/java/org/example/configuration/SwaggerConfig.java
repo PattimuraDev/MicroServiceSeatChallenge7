@@ -15,7 +15,12 @@ public class SwaggerConfig {
     @Bean
     public OpenAPI demoApi(@Value("REST API for challenge chapter 6 back end java binar academy") String appDescription,
                            @Value("v1.0.0") String appVersion
-    ){
+    ) {
+        Server server = new Server();
+        server.setUrl("https://microserviceseatchallenge7-production.up.railway.app/");
+        List<Server> listOfServer = new ArrayList<>();
+        listOfServer.add(server);
+
         return new OpenAPI()
                 .info(new Info()
                         .title("Patra API")
@@ -26,6 +31,7 @@ public class SwaggerConfig {
                                 .name("Apache 2.0")
                                 .url("http://springdoc.org")
                         )
-                );
+                )
+                .servers(listOfServer);
     }
 }

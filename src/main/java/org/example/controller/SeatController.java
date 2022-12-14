@@ -5,9 +5,9 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.example.model.CustomResponseJson;
 import org.example.model.Seat;
 import org.example.model.SeatDto;
-import org.example.model.CustomResponseJson;
 import org.example.model.SeatNumberCompositeKey;
 import org.example.service.SeatServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +24,7 @@ public class SeatController {
 
     /**
      * Method controller untuk mengakomodasi kebutuhan menambah data seat baru
+     *
      * @param seatDto parameter data transfer object untuk seat
      * @return response entity hasil dari response endpoint API
      */
@@ -49,7 +50,8 @@ public class SeatController {
 
     /**
      * Method controller untuk mengakomodasi kebutuhan update data seat
-     * @param newStatus parameter untuk memasukkan status seat sekarang (available/not available)
+     *
+     * @param newStatus       parameter untuk memasukkan status seat sekarang (available/not available)
      * @param nomorBarisKursi parameter untuk salah satu composite key, yaitu nomor baris seat
      * @param nomorKolomKursi parameter untuk salah satu composite key, yaitu nomor kolom seat
      * @return response entity hasil dari response endpoint API
@@ -68,8 +70,8 @@ public class SeatController {
             @RequestParam String newStatus,
             @RequestParam String nomorBarisKursi,
             @RequestParam String nomorKolomKursi
-    ){
-        try{
+    ) {
+        try {
             seatsService.updateSeatsStatus(newStatus, nomorBarisKursi, nomorKolomKursi);
             return new ResponseEntity<>(
                     new CustomResponseJson(
@@ -78,7 +80,7 @@ public class SeatController {
                     ),
                     HttpStatus.OK
             );
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(
                     new CustomResponseJson(
                             "Seat status gagal diupdate",
@@ -92,6 +94,7 @@ public class SeatController {
 
     /**
      * Method controller untuk mengakomodasi kebutuhan menghapus data seat
+     *
      * @param idSeat parameter untuk object composite key dari seat
      * @return response entity hasil dari response endpoint API
      */
@@ -105,7 +108,7 @@ public class SeatController {
             )
     )
     @DeleteMapping("/delete_seat")
-    public ResponseEntity<CustomResponseJson> deleteSeat(@RequestBody SeatNumberCompositeKey idSeat){
+    public ResponseEntity<CustomResponseJson> deleteSeat(@RequestBody SeatNumberCompositeKey idSeat) {
         try {
             seatsService.deleteSeats(idSeat);
             return new ResponseEntity<>(
@@ -115,7 +118,7 @@ public class SeatController {
                     ),
                     HttpStatus.OK
             );
-        }catch (Exception e){
+        } catch (Exception e) {
             return new ResponseEntity<>(
                     new CustomResponseJson(
                             "Operasi menghapus seat gagal",
