@@ -5,6 +5,11 @@ import org.example.model.SeatDto;
 import org.example.model.SeatNumberCompositeKey;
 import java.util.List;
 
+/**
+ * Interface service untuk menghandle semua permintaan
+ * ke repository seat
+ * @author Dwi Satria Patra
+ */
 public interface SeatService {
     Seat addSeats(Seat seats);
 

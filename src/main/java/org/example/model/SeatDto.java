@@ -3,6 +3,10 @@ package org.example.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
+/**
+ * Kelas pemodelan DTO (data transfer object) dari seat
+ * @author Dwi Satria Patra
+ */
 @Data
 public class SeatDto {
     private SeatNumberCompositeKey seatNumberCompositeKey;
